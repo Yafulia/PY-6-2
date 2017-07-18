@@ -1,15 +1,7 @@
 def make_cook_book():
-	cook_book = {}
-
-	with open('cook_book.txt') as f:
-		for line in f:
-			dish = line.strip().lower()
-			cook_book[dish] = []
-			ingr_num = int(f.readline().strip())
-			for i in range(ingr_num):
-				s = f.readline().strip().split('|')
-				cook_book[dish].append(dict(ingridient_name = s[0].strip(), quantity = int(s[1].strip()), measure = s[2].strip()))
-			f.readline()
+	import json
+	with open('cookbook.json', encoding='utf-8') as f:
+		cook_book = json.load(f)
 	return cook_book
 
 def get_shop_list_by_dishes(dishes, person_count):
